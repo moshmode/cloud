@@ -1,0 +1,15 @@
+server:
+  port: 8002
+
+spring:
+  application:
+    name: cloud-service-obs
+
+  profiles:
+    active: dev
+
+
+huawei:
+  obs:
+    endPoint: obs.cn-south-1.myhuaweicloud.com
+    bucketName: cloud-teacher-avatar

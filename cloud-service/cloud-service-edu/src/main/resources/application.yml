@@ -1,0 +1,22 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: cloud-service-edu
+
+  datasource:
+    username: mosh
+    password: mode0520
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cloud?serverTimezone=GMT%2B8
+    type: com.zaxxer.hikari.HikariDataSource
+
+  profiles:
+    active: dev
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+mybatis-plus:
+  mapper-locations: classpath:mappers/*.xml
