@@ -1,11 +1,14 @@
 package com.mosh.edu.controller;
 
 
+import com.mosh.edu.client.VodClient;
 import com.mosh.edu.entity.Video;
-import com.mosh.edu.mapper.VideoMapper;
 import com.mosh.edu.service.VideoService;
+import com.mosh.utils.exception.SaveException;
 import com.mosh.utils.response.ResponseEntity;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.SpringApplication;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -19,13 +22,15 @@ import javax.annotation.Resource;
  * @since 2021-10-25
  */
 @Slf4j
-@CrossOrigin
 @RestController
 @RequestMapping("/edu/video")
 public class VideoController {
 
     @Resource
     VideoService videoService;
+
+    @Resource
+    VodClient vodClient;
 
     @PostMapping
     public ResponseEntity addVideo(@RequestBody Video video) {
@@ -35,8 +40,17 @@ public class VideoController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity deleteVideo(@PathVariable("id") String id) {
+    public ResponseEntity deleteVideo(@PathVariable("id") String id) throws SaveException {
+        Video video = videoService.getById(id);
+
+        if (!StringUtils.isEmpty(video.getVideoSourceId())) {
+            if (!vodClient.delete(id)) {
+                throw new SaveException();
+            }
+        }
+
         videoService.removeById(id);
+
         return ResponseEntity.success();
     }
 

@@ -1,7 +1,7 @@
 
 import com.alibaba.excel.EasyExcel;
-import com.baomidou.mybatisplus.annotation.DbType;
-import com.baomidou.mybatisplus.annotation.IdType;
+//import com.baomidou.mybatisplus.annotation.DbType;
+//import com.baomidou.mybatisplus.annotation.IdType;
 //import com.baomidou.mybatisplus.generator.AutoGenerator;
 //import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
 //import com.baomidou.mybatisplus.generator.config.GlobalConfig;
@@ -33,7 +33,7 @@ public class Code {
 //        // 2、全局配置
 //        GlobalConfig gc = new GlobalConfig();
 //        String projectPath = System.getProperty("user.dir");
-//        gc.setOutputDir("D:/WorkSpace/IdeaProjects/cloud/cloud-service/cloud-service-edu/src/main/java/");
+//        gc.setOutputDir("D:/WorkSpace/IdeaProjects/my-cloud/cloud-service/cloud-service-edu/src/main/java/");
 //
 //        gc.setAuthor("mosh");
 //        gc.setOpen(false); //生成后是否打开资源管理器
@@ -72,7 +72,7 @@ public class Code {
 //        // 5、策略配置
 //        StrategyConfig strategy = new StrategyConfig();
 //
-//        strategy.setInclude("edu_video", "edu_chapter", "edu_course", "edu_course_description");
+//        strategy.setInclude("edu_comment");
 //
 //        strategy.setNaming(NamingStrategy.underline_to_camel);//数据库表映射到实体的命名策略
 //        strategy.setTablePrefix(pc.getModuleName() + "_"); //生成实体时去掉表前缀

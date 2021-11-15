@@ -1,12 +1,10 @@
 package com.mosh.obs.context;
 
-import com.mosh.huawei.context.AccountConfigurationContext;
-import com.obs.services.ObsClient;
+import com.aliyun.oss.OSS;
+import com.aliyun.oss.OSSClientBuilder;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
-
-import javax.annotation.Resource;
 
 /**
  * Description
@@ -19,14 +17,15 @@ import javax.annotation.Resource;
 @ConfigurationProperties(prefix = "huawei.obs")
 public class OBSConfigurationContext {
 
-    @Resource
-    private AccountConfigurationContext account;
+    private String ak;
+
+    private String sk;
 
     private String endPoint;
 
     private String bucketName;
 
-    public ObsClient getObsClient() {
-        return new ObsClient(account.getAk(), account.getSk(), endPoint);
+    public OSS getClient() {
+        return new OSSClientBuilder().build(endPoint, ak, sk);
     }
 }

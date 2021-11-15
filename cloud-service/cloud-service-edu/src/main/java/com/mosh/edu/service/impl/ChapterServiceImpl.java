@@ -5,6 +5,8 @@ import com.mosh.edu.entity.Chapter;
 import com.mosh.edu.entity.Course;
 import com.mosh.edu.entity.CourseDescription;
 import com.mosh.edu.entity.Video;
+import com.mosh.edu.entity.vo.client.ChapterClientVo;
+import com.mosh.edu.entity.vo.client.VideoClientVo;
 import com.mosh.edu.entity.vo.course.chapter.ChapterVo;
 import com.mosh.edu.entity.vo.course.video.VideoVo;
 import com.mosh.edu.mapper.ChapterMapper;
@@ -96,6 +98,34 @@ public class ChapterServiceImpl extends ServiceImpl<ChapterMapper, Chapter> impl
         QueryWrapper<Chapter> wrapper = new QueryWrapper<>();
         wrapper.eq("course_id", courseId);
         chapterMapper.delete(wrapper);
+    }
+
+    @Override
+    public List<ChapterClientVo> getClientChapterVideo(String courseId) {
+        ArrayList<ChapterClientVo> list = new ArrayList<>();
+
+        QueryWrapper<Chapter> chapterWrapper = new QueryWrapper<>();
+        chapterWrapper.eq("course_id", courseId);
+        List<Chapter> chapters = chapterMapper.selectList(chapterWrapper);
+
+        QueryWrapper<Video> videoWrapper = new QueryWrapper<>();
+        videoWrapper.eq("course_id", courseId);
+        List<Video> videos = videoMapper.selectList(videoWrapper);
+
+        for (Chapter chapter : chapters) {
+            ChapterClientVo chapterClientVo = new ChapterClientVo();
+            BeanUtils.copyProperties(chapter, chapterClientVo);
+            for (Video video : videos) {
+                if (video.getChapterId().equals(chapter.getId())) {
+                    VideoClientVo videoClientVo = new VideoClientVo();
+                    BeanUtils.copyProperties(video, videoClientVo);
+                    chapterClientVo.getChildren().add(videoClientVo);
+                }
+            }
+            list.add(chapterClientVo);
+        }
+
+        return list;
     }
 
 }

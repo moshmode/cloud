@@ -19,7 +19,6 @@ import java.util.List;
  * @author mosh
  * @since 2021-10-25
  */
-@CrossOrigin
 @RestController
 @RequestMapping("/edu/chapter")
 public class ChapterController {

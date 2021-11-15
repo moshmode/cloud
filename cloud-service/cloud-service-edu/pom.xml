@@ -18,7 +18,11 @@
 
     <dependencies>
 
-<!--        &lt;!&ndash; velocity 模板引擎, Mybatis Plus 代码生成器需要 &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>com.baomidou</groupId>-->
+<!--            <artifactId>mybatis-plus-boot-starter</artifactId>-->
+<!--            <version>3.0.5</version>-->
+<!--        </dependency>-->
 <!--        <dependency>-->
 <!--            <groupId>org.apache.velocity</groupId>-->
 <!--            <artifactId>velocity-engine-core</artifactId>-->

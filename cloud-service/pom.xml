@@ -15,6 +15,15 @@
     <modules>
         <module>cloud-service-edu</module>
         <module>cloud-service-obs</module>
+        <module>cloud-service-vod</module>
+        <module>cloud-service-cms</module>
+        <module>cloud-service-msm</module>
+        <module>cloud-service-ucenter</module>
+        <module>cloud-service-order</module>
+        <module>cloud-service-comment</module>
+        <module>cloud-service-statistics</module>
+        <module>cloud-service-acl</module>
+        <module>cloud-service-blog</module>
     </modules>
 
     <properties>
@@ -23,34 +32,33 @@
     </properties>
 
     <dependencies>
-        <!--        &lt;!&ndash;ribbon&ndash;&gt;-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.cloud</groupId>-->
-        <!--            <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>-->
-        <!--        </dependency>-->
-        <!--        &lt;!&ndash;/ribbon&ndash;&gt;-->
+        <!--ribbon-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+        </dependency>
+        <!--/ribbon-->
 
-        <!--        &lt;!&ndash;hystrix&ndash;&gt;-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.cloud</groupId>-->
-        <!--            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>-->
-        <!--        </dependency>-->
-        <!--        &lt;!&ndash;/hystrix&ndash;&gt;-->
+        <!--hystrix-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        </dependency>
+        <!--/hystrix-->
 
-        <!--        &lt;!&ndash;nacos-discovery&ndash;&gt;-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.cloud</groupId>-->
-        <!--            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>-->
-        <!--        </dependency>-->
-        <!--        &lt;!&ndash;/nacos-discovery&ndash;&gt;-->
-
-        <!--        &lt;!&ndash;open-feign&ndash;&gt;-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.cloud</groupId>-->
-        <!--            <artifactId>spring-cloud-starter-openfeign</artifactId>-->
-        <!--        </dependency>-->
-        <!--        &lt;!&ndash;/open-feign&ndash;&gt;-->
-
+        <!--nacos-discovery-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <!--/nacos-discovery-->
+        <!--open-feign-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <version>2.2.5.RELEASE</version>
+        </dependency>
+        <!--/open-feign-->
 
         <!--spring-jdbc-->
         <dependency>
@@ -80,13 +88,12 @@
         </dependency>
         <!--/commons-io-->
 
-        <!--gson-->
+        <!--httpclient-->
         <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
         </dependency>
-        <!--/gson-->
-
+        <!--/httpclient-->
         <!--poi-->
         <dependency>
             <groupId>org.apache.poi</groupId>
@@ -106,13 +113,11 @@
             <artifactId>cloud-common-utils</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-
         <dependency>
             <groupId>com.mosh</groupId>
-            <artifactId>cloud-huawei-utils</artifactId>
+            <artifactId>cloud-common-entity</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-
     </dependencies>
 
 </project>

@@ -1,0 +1,72 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: cloud-infrastructure-gateway
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 124.71.71.18:8848
+
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+
+      routes:
+        - id: cloud-service-acl # 路由标示，必须唯一
+          uri: lb://cloud-service-acl # 路由的目标地址
+          predicates: # 路由断言，判断请求是否符合规则
+            - Path=/acl/** # 路径断言，判断路径是否是以/user开头，如果是则符合
+
+        - id: cloud-service-edu
+          uri: lb://cloud-service-edu
+          predicates:
+            - Path=/edu/**
+
+        - id: cloud-service-obs
+          uri: lb://cloud-service-obs
+          predicates:
+            - Path=/obs/**
+
+        - id: cloud-service-vod
+          uri: lb://cloud-service-vod
+          predicates:
+            - Path=/vod/**
+
+        - id: cloud-service-ucenter
+          uri: lb://cloud-service-ucenter
+          predicates:
+            - Path=/ucenter/**
+
+        - id: cloud-service-cms
+          uri: lb://cloud-service-cms
+          predicates:
+            - Path=/cms/**
+
+        - id: cloud-service-msm
+          uri: lb://cloud-service-msm
+          predicates:
+            - Path=/msm/**
+
+        - id: cloud-service-comment
+          uri: lb://cloud-service-comment
+          predicates:
+            - Path=/comment/**
+
+        - id: cloud-service-order
+          uri: lb://cloud-service-order
+          predicates:
+            - Path=/order/**
+
+        - id: cloud-service-statistics
+          uri: lb://cloud-service-statistics
+          predicates:
+            - Path=/statistics/**
+
+        - id: cloud-service-blog
+          uri: lb://cloud-service-blog
+          predicates:
+            - Path=/blog/**

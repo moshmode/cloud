@@ -1,22 +1,28 @@
 package com.mosh.edu.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.mosh.edu.client.OrderClient;
 import com.mosh.edu.entity.Course;
 import com.mosh.edu.entity.CourseDescription;
+import com.mosh.edu.entity.Subject;
+import com.mosh.edu.entity.Teacher;
+import com.mosh.edu.entity.vo.client.ChapterClientVo;
+import com.mosh.edu.entity.vo.client.CourseClientInfoVo;
 import com.mosh.edu.entity.vo.course.info.CourseInfoVo;
 import com.mosh.edu.entity.vo.course.publish.CoursePublishVo;
-import com.mosh.edu.mapper.ChapterMapper;
 import com.mosh.edu.mapper.CourseDescriptionMapper;
 import com.mosh.edu.mapper.CourseMapper;
-import com.mosh.edu.mapper.VideoMapper;
-import com.mosh.edu.service.ChapterService;
-import com.mosh.edu.service.CourseService;
+import com.mosh.edu.service.*;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.mosh.edu.service.VideoService;
+import com.mosh.entity.CourseOrder;
 import com.mosh.utils.exception.SaveException;
+import com.mosh.utils.response.ResponseEntity;
 import org.springframework.beans.BeanUtils;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * <p>
@@ -41,7 +47,14 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
     @Resource
     VideoService videoService;
 
+    @Resource
+    TeacherService teacherService;
 
+    @Resource
+    SubjectService subjectService;
+
+    @Resource
+    OrderClient orderClient;
 
     @Override
     public String saveCourseInfo(CourseInfoVo courseInfoVo) throws SaveException {
@@ -100,6 +113,53 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         chapterService.deleteByCourseId(id);
         courseDescriptionMapper.deleteById(id);
         courseMapper.deleteById(id);
+    }
+
+    @Cacheable("courseList")
+    @Override
+    public List<Course> getHotCourses() {
+        QueryWrapper<Course> wrapper = new QueryWrapper<>();
+        wrapper.orderByDesc("view_count");
+        wrapper.last("limit 8");
+
+        return courseMapper.selectList(wrapper);
+    }
+
+    @Override
+    public CourseClientInfoVo getCourseClientInfoVo( String id,String memberId) {
+        CourseClientInfoVo courseClientInfoVo = new CourseClientInfoVo();
+        Course course = courseMapper.selectById(id);
+
+        BeanUtils.copyProperties(course, courseClientInfoVo);
+
+        CourseDescription description = courseDescriptionMapper.selectById(id);
+        courseClientInfoVo.setDescription(description.getDescription());
+
+        List<ChapterClientVo> chapterList = chapterService.getClientChapterVideo(id);
+        courseClientInfoVo.setChapterList(chapterList);
+
+        Teacher teacher = teacherService.getById(courseClientInfoVo.getTeacherId());
+        courseClientInfoVo.setTeacher(teacher);
+
+        Subject subject = subjectService.getById(courseClientInfoVo.getSubjectId());
+        courseClientInfoVo.setSubjectTitle(subject.getTitle());
+
+        Subject subjectParent = subjectService.getById(courseClientInfoVo.getSubjectParentId());
+        courseClientInfoVo.setSubjectParentTitle(subjectParent.getTitle());
+
+        courseClientInfoVo.setPay(orderClient.getIsPay(id, memberId));
+
+        return courseClientInfoVo;
+    }
+
+    @Override
+    public CourseOrder getCourseOrder(String id) {
+        Course course = courseMapper.selectById(id);
+        Teacher teacher = teacherService.getById(course.getTeacherId());
+        CourseOrder courseOrder = new CourseOrder();
+        BeanUtils.copyProperties(course, courseOrder);
+        courseOrder.setTeacherName(teacher.getName());
+        return courseOrder;
     }
 
 

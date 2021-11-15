@@ -3,6 +3,7 @@ package com.mosh.obs;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * Description
@@ -10,7 +11,8 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
  * @author mosh
  * @date 2021/10/14 19:25
  */
-@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
+@EnableDiscoveryClient
+@SpringBootApplication(scanBasePackages = "com.mosh", exclude = DataSourceAutoConfiguration.class)
 public class OBSApplication {
     public static void main(String[] args) {
         SpringApplication.run(OBSApplication.class, args);

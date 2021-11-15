@@ -2,16 +2,14 @@ package com.mosh.edu.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mosh.edu.entity.Course;
-import com.mosh.edu.entity.Teacher;
-import com.mosh.edu.entity.query.TeacherQuery;
 import com.mosh.edu.entity.vo.course.info.CourseInfoVo;
 import com.mosh.edu.entity.vo.course.publish.CoursePublishVo;
 import com.mosh.edu.service.CourseService;
 import com.mosh.utils.exception.SaveException;
 import com.mosh.utils.response.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -24,7 +22,6 @@ import javax.annotation.Resource;
  * @author mosh
  * @since 2021-10-25
  */
-@CrossOrigin
 @RestController
 @RequestMapping("/edu/course")
 public class CourseController {
@@ -75,10 +72,11 @@ public class CourseController {
 
         String title = courseQuery.getTitle();
         String status = courseQuery.getStatus();
-        if (!StringUtils.isBlank(title)) {
+
+        if (!StringUtils.isEmpty(title)) {
             wrapper.like("title", title);
         }
-        if (!StringUtils.isBlank(status)) {
+        if (!StringUtils.isEmpty(status)) {
             wrapper.eq("status", status);
         }
 

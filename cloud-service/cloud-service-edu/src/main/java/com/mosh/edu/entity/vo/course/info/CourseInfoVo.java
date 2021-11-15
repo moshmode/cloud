@@ -29,4 +29,5 @@ public class CourseInfoVo {
     private String cover;
 
     private String description;
+
 }

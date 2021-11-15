@@ -2,6 +2,7 @@ package com.mosh.edu.service;
 
 import com.mosh.edu.entity.Chapter;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.mosh.edu.entity.vo.client.ChapterClientVo;
 import com.mosh.edu.entity.vo.course.chapter.ChapterVo;
 import com.mosh.utils.exception.SaveException;
 
@@ -26,4 +27,6 @@ public interface ChapterService extends IService<Chapter> {
     ChapterVo getChapter(String id);
 
     void deleteByCourseId(String courseId);
+
+    List<ChapterClientVo> getClientChapterVideo(String courseId);
 }

@@ -19,7 +19,6 @@ import java.util.Collection;
  * @author mosh
  * @since 2021-10-15
  */
-@CrossOrigin
 @RestController
 @RequestMapping("/edu/subject")
 public class SubjectController {
