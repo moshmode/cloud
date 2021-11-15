@@ -12,11 +12,18 @@ import java.util.Date;
  */
 @Data
 public class DetailVo {
+
     private String id;
+
     private String blogId;
+
     private String name;
+
     private String title;
+
     private String content;
+
     private Date releaseTime;
+
     private Date updateTime;
 }
