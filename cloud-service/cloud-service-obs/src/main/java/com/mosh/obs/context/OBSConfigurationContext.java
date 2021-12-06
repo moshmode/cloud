@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  */
 @Data
 @Component
-@ConfigurationProperties(prefix = "huawei.obs")
+@ConfigurationProperties(prefix = "obs")
 public class OBSConfigurationContext {
 
     private String ak;
@@ -23,9 +23,12 @@ public class OBSConfigurationContext {
 
     private String endPoint;
 
-    private String bucketName;
+    private String teacherAvatarBucket;
+
+    private String blogCoverBucket;
 
     public OSS getClient() {
         return new OSSClientBuilder().build(endPoint, ak, sk);
     }
+
 }

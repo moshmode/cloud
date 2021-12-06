@@ -16,6 +16,7 @@
         <module>cloud-common-utils</module>
         <module>cloud-common-entity</module>
         <module>cloud-common-security</module>
+        <module>cloud-common-db</module>
     </modules>
 
     <properties>

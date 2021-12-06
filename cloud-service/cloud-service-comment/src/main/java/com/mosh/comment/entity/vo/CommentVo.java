@@ -1,8 +1,7 @@
 package com.mosh.comment.entity.vo;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.mosh.comment.entity.Reply;
+import com.mosh.comment.entity.ReplyCourse;
 import lombok.Data;
 
 import java.util.Date;
@@ -25,11 +24,6 @@ public class CommentVo {
      * 课程id
      */
     private String courseId;
-
-    /**
-     * 讲师id
-     */
-    private String teacherId;
 
     /**
      * 会员id

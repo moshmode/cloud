@@ -1,27 +1,19 @@
 package com.mosh.comment.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
-
-import java.util.Date;
-import java.io.Serializable;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.util.Date;
 
 /**
- * <p>
- * 回复
- * </p>
+ * Description
  *
  * @author mosh
- * @since 2021-11-09
+ * @date 2021/11/18 10:24
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
-@Accessors(chain = true)
-@TableName("comment_reply")
-public class Reply implements Serializable {
-
+public abstract class Reply implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -82,6 +74,4 @@ public class Reply implements Serializable {
      */
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date gmtModified;
-
-
 }

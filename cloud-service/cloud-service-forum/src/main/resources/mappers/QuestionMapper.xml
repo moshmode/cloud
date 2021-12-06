@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mosh.forum.mapper.QuestionMapper">
+    <select id="getQuestionByQuery" resultType="com.mosh.forum.entity.Question">
+
+
+        SELECT distinct fq.*
+        FROM forum_question fq
+        LEFT OUTER JOIN forum_question_label fql ON fq.id = fql.question_id
+        <where>
+
+            fq.is_deleted = 0
+
+            <if test="query.labels != null and query.labels.size != 0">
+                and fql.label_id in (
+                <foreach collection="query.labels" item="label_id">
+                    #{label_id},
+                </foreach>
+                '0' )
+            </if>
+            <if test="query.memberId != null and query.memberId != ''">
+                and fq.member_id = #{query.memberId}
+            </if>
+            <if test="query.title != null and query.title != ''">
+                and fq.title like concat('%',#{query.title,jdbcType = VARCHAR},'%')
+            </if>
+            <if test="query.name != null and query.name != ''">
+                and fq.name like concat('%',#{query.name,jdbcType = VARCHAR},'%')
+            </if>
+            <if test="query.begin != null and query.begin != ''">
+                and DATE(fq.gmt_create) >= #{query.begin}
+            </if>
+            <if test="query.end != null and query.end != ''">
+                and #{query.end} >= DATE(fq.gmt_create)
+            </if>
+            <if test="query.status != null and query.status != ''">
+                and fq.status = #{query.status}
+            </if>
+            <if test="query.status == null or query.status == ''">
+                and fq.status = 'Normal'
+            </if>
+            <if test="query.order != null">
+                ORDER BY
+                <choose>
+                    <when test="query.order == 0">
+                        gmt_create
+                    </when>
+                    <when test="query.order == 1">
+                        gmt_modified
+                    </when>
+                    <when test="query.order == 2">
+                        view_count
+                    </when>
+                    <otherwise>
+                        gmt_create
+                    </otherwise>
+                </choose>
+                Desc
+            </if>
+        </where>
+    </select>
+</mapper>

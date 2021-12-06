@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.Test;
-import com.baomidou.mybatisplus.annotation.DbType;
-import com.baomidou.mybatisplus.annotation.IdType;
+//import com.baomidou.mybatisplus.annotation.DbType;
+//import com.baomidou.mybatisplus.annotation.IdType;
 //import com.baomidou.mybatisplus.generator.AutoGenerator;
 //import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
 //import com.baomidou.mybatisplus.generator.config.GlobalConfig;
@@ -63,7 +63,7 @@ public class Code {
 //        // 5、策略配置
 //        StrategyConfig strategy = new StrategyConfig();
 //
-//        strategy.setInclude("comment_reply");
+//        strategy.setInclude("comment_blog","comment_reply_blog");
 //
 //        strategy.setNaming(NamingStrategy.underline_to_camel);//数据库表映射到实体的命名策略
 //        strategy.setTablePrefix(pc.getModuleName() + "_"); //生成实体时去掉表前缀

@@ -70,3 +70,13 @@ spring:
           uri: lb://cloud-service-blog
           predicates:
             - Path=/blog/**
+
+        - id: cloud-service-forum
+          uri: lb://cloud-service-forum
+          predicates:
+            - Path=/forum/**
+
+        - id: cloud-service-interaction
+          uri: lb://cloud-service-interaction
+          predicates:
+            - Path=/interaction/**

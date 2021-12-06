@@ -1,6 +1,6 @@
 package com.mosh.obs.controller;
 
-import com.mosh.obs.service.AvatarOBSService;
+import com.mosh.obs.service.OBSService;
 import com.mosh.utils.response.ResponseEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -20,12 +20,12 @@ import javax.annotation.Resource;
 public class AvatarOBSController {
 
     @Resource
-    private AvatarOBSService avatarOBSService;
+    private OBSService obsService;
 
     @PostMapping
     public ResponseEntity upload(MultipartFile file) {
         log.info(file.getName());
-        return ResponseEntity.success().data("url", avatarOBSService.upload(file));
+        return ResponseEntity.success().data("url", obsService.uploadTeacherAvatar(file));
     }
 
 }

@@ -6,6 +6,7 @@ import com.mosh.edu.entity.vo.subject.SubjectVo;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * <p>
@@ -19,5 +20,5 @@ public interface SubjectService extends IService<Subject> {
 
     void batchImportByExcel(MultipartFile file);
 
-    Collection<SubjectVo> nestedList();
+    List<SubjectVo> nestedList();
 }

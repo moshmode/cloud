@@ -47,7 +47,7 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
             }
         }
         //内部服务接口，不允许外部访问
-        if(antPathMatcher.match("/**/inner/**", path)) {
+        if(antPathMatcher.match("/**/**/feign", path)) {
             ServerHttpResponse response = exchange.getResponse();
             return out(response);
         }

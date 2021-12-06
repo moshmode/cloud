@@ -2,6 +2,7 @@ package com.mosh.edu.service;
 
 import com.mosh.edu.entity.Course;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.mosh.edu.entity.query.CourseQuery;
 import com.mosh.edu.entity.vo.client.CourseClientInfoVo;
 import com.mosh.edu.entity.vo.course.info.CourseInfoVo;
 import com.mosh.edu.entity.vo.course.publish.CoursePublishVo;
@@ -9,6 +10,7 @@ import com.mosh.entity.CourseOrder;
 import com.mosh.utils.exception.SaveException;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -36,4 +38,6 @@ public interface CourseService extends IService<Course> {
 
 
     CourseOrder getCourseOrder(String id);
+
+    Map<String,Object> getCourseByPage(Integer current, Integer limit, CourseQuery query) throws IllegalAccessException;
 }

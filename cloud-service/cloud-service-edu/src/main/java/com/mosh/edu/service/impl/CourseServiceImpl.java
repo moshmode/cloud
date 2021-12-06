@@ -1,11 +1,13 @@
 package com.mosh.edu.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mosh.edu.client.OrderClient;
 import com.mosh.edu.entity.Course;
 import com.mosh.edu.entity.CourseDescription;
 import com.mosh.edu.entity.Subject;
 import com.mosh.edu.entity.Teacher;
+import com.mosh.edu.entity.query.CourseQuery;
 import com.mosh.edu.entity.vo.client.ChapterClientVo;
 import com.mosh.edu.entity.vo.client.CourseClientInfoVo;
 import com.mosh.edu.entity.vo.course.info.CourseInfoVo;
@@ -16,13 +18,15 @@ import com.mosh.edu.service.*;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mosh.entity.CourseOrder;
 import com.mosh.utils.exception.SaveException;
-import com.mosh.utils.response.ResponseEntity;
+import com.mosh.db.mapper.MapperUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -62,9 +66,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         CourseDescription description = new CourseDescription();
         BeanUtils.copyProperties(courseInfoVo, course);
 
-
-        int insert = courseMapper.insert(course);
-        if (insert == 0) {
+        if (courseMapper.insert(course) == 0) {
             throw new SaveException();
         }
 
@@ -160,6 +162,15 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         BeanUtils.copyProperties(course, courseOrder);
         courseOrder.setTeacherName(teacher.getName());
         return courseOrder;
+    }
+
+    @Override
+    public Map<String, Object> getCourseByPage(Integer current, Integer limit, CourseQuery query) throws IllegalAccessException {
+        Page<Course> page = MapperUtils.getPage(courseMapper, query, current, limit);
+        Map<String, Object> map = new HashMap<>();
+        map.put("rows", page.getRecords());
+        map.put("total", page.getTotal());
+        return map;
     }
 
 

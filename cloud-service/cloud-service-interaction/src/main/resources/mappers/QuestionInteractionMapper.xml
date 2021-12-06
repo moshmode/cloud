@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mosh.interaction.mapper.QuestionInteractionMapper">
+    <!--sql语句：根据用户id查询收藏的所有博客id-->
+    <select id="getCollectedByMemberId" resultType="string">
+        SELECT iq.question_id
+        FROM interaction_question iq
+        WHERE iq.member_id = #{memberId}
+          and iq.collected = 1
+    </select>
+</mapper>

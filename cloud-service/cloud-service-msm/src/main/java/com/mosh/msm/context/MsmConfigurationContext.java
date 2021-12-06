@@ -24,7 +24,6 @@ public class MsmConfigurationContext {
     private MsmApiClient client;
 
     public MsmApiClient getClient() {
-
         if (client == null) {
             client = new MsmApiClient();
             HttpClientBuilderParams httpParam = new HttpClientBuilderParams();

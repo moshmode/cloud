@@ -3,6 +3,7 @@ package com.mosh.ucenter.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.mosh.entity.MemberOrder;
 import com.mosh.ucenter.entity.Member;
+import com.mosh.ucenter.entity.vo.MemberVo;
 import com.mosh.ucenter.entity.vo.RegisterVo;
 import com.mosh.ucenter.mapper.MemberMapper;
 import com.mosh.ucenter.service.MemberService;
@@ -101,5 +102,16 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
     @Override
     public Integer countRegister(String day) {
         return memberMapper.countRegister(day);
+    }
+
+    @Override
+    public MemberVo getMemberById(String id) {
+        Member member = memberMapper.selectById(id);
+        if (member == null) {
+            return null;
+        }
+        MemberVo memberVo = new MemberVo();
+        BeanUtils.copyProperties(member, memberVo);
+        return memberVo;
     }
 }

@@ -9,6 +9,7 @@ import com.mosh.edu.listener.ExcelSubjectListener;
 import com.mosh.edu.mapper.SubjectMapper;
 import com.mosh.edu.service.SubjectService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -37,16 +38,15 @@ public class SubjectServiceImpl extends ServiceImpl<SubjectMapper, Subject> impl
         }
     }
 
+    @Cacheable("subjectList")
     @Override
-    public Collection<SubjectVo> nestedList() {
+    public List<SubjectVo> nestedList() {
         QueryWrapper<Subject> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("parent_id", 0);
-        queryWrapper.orderByAsc("sort", "id");
+        queryWrapper.eq("parent_id", 0).orderByAsc("sort", "id");
         List<Subject> oneSubjects = subjectMapper.selectList(queryWrapper);
 
         QueryWrapper<Subject> queryWrapper2 = new QueryWrapper<>();
-        queryWrapper2.ne("parent_id", 0);
-        queryWrapper2.orderByAsc("sort", "id");
+        queryWrapper2.ne("parent_id", 0).orderByAsc("sort", "id");
         List<Subject> twoSubjects = subjectMapper.selectList(queryWrapper2);
 
 
@@ -64,7 +64,6 @@ public class SubjectServiceImpl extends ServiceImpl<SubjectMapper, Subject> impl
             e.printStackTrace();
         }
 
-
-        return map.values();
+        return new ArrayList<>(map.values());
     }
 }

@@ -3,6 +3,7 @@ package com.mosh.ucenter.service;
 import com.mosh.entity.MemberOrder;
 import com.mosh.ucenter.entity.Member;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.mosh.ucenter.entity.vo.MemberVo;
 import com.mosh.ucenter.entity.vo.RegisterVo;
 
 /**
@@ -22,4 +23,6 @@ public interface MemberService extends IService<Member> {
     MemberOrder getMemberOrder(String id);
 
     Integer countRegister(String day);
+
+    MemberVo getMemberById(String id);
 }

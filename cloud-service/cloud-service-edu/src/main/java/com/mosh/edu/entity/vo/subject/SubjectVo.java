@@ -4,6 +4,7 @@ import com.mosh.edu.entity.Subject;
 import lombok.Data;
 
 import javax.naming.OperationNotSupportedException;
+import java.io.Serializable;
 
 /**
  * Description
@@ -12,7 +13,8 @@ import javax.naming.OperationNotSupportedException;
  * @date 2021/10/18 15:15
  */
 @Data
-public abstract class SubjectVo {
+public abstract class SubjectVo implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String id;
     private String title;
 

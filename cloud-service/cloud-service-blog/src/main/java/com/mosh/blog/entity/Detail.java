@@ -41,6 +41,11 @@ public class Detail implements Serializable {
     private String memberId;
 
     /**
+     * 标题
+     */
+    private String title;
+
+    /**
      * 内容
      */
     private String content;

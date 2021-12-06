@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: cloud-service-comment
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      config:
+        server-addr: 124.71.71.18:8848
+        file-extension: yaml
+        shared-dataids: cloud-common-config.yaml,cloud-common-redis.yaml,cloud-common-mysql.yaml
+
+

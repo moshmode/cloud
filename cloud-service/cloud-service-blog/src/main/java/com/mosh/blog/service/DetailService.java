@@ -4,6 +4,8 @@ import com.mosh.blog.entity.Detail;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.mosh.blog.entity.vo.DetailVo;
 
+import java.util.Map;
+
 /**
  * <p>
  * 博客 服务类
@@ -14,5 +16,9 @@ import com.mosh.blog.entity.vo.DetailVo;
  */
 public interface DetailService extends IService<Detail> {
 
-    DetailVo getDetailByBlogId(Integer blogId);
+    DetailVo getDetailByBlogId(String blogId);
+
+    String addDetail(Detail detail);
+
+    Map<String, Object> getDraftListByPage(Integer current, Integer limit, Detail detail);
 }

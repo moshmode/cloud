@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: cloud-service-vod
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      config:
+        server-addr: 124.71.71.18:8848
+        file-extension: yaml
+        shared-dataids: cloud-common-config.yaml
+

@@ -24,6 +24,8 @@
         <module>cloud-service-statistics</module>
         <module>cloud-service-acl</module>
         <module>cloud-service-blog</module>
+        <module>cloud-service-forum</module>
+        <module>cloud-service-interaction</module>
     </modules>
 
     <properties>
@@ -52,6 +54,14 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
         <!--/nacos-discovery-->
+
+        <!--nacos-config-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+        <!--/nacos-config-->
+
         <!--open-feign-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -66,13 +76,6 @@
             <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
         <!--/spring-jdbc-->
-
-        <!--mybatis-plus-->
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-        </dependency>
-        <!--/mybatis-plus-->
 
         <!--mysql-->
         <dependency>
@@ -118,6 +121,12 @@
             <artifactId>cloud-common-entity</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.mosh</groupId>
+            <artifactId>cloud-common-db</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
     </dependencies>
 
 </project>

@@ -17,7 +17,11 @@ public class DetailVo {
 
     private String blogId;
 
+    private String memberId;
+
     private String name;
+
+    private String avatar;
 
     private String title;
 

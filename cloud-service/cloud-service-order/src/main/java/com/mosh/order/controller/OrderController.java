@@ -27,7 +27,7 @@ public class OrderController {
 
     @GetMapping("create/{courseId}")
     public ResponseEntity createOrder(@PathVariable("courseId") String courseId, HttpServletRequest request) {
-        String orderNo = orderService.createOrder(courseId, JwtUtils.getMemberIdByJwtToken(request));
+        String orderNo = orderService.createOrder(courseId, JwtUtils.getMemberIdByRequest(request));
         return ResponseEntity.success().data("orderNo", orderNo);
     }
 
